@@ -40,8 +40,12 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
   const calculateTotals = (items: CartItem[]): { totalItems: number; totalPrice: number } => {
     const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
-    const totalPrice = items.reduce((sum, item) => sum + item.product.price * item.quantity, 0);
-    return { totalItems, totalPrice };
+    const totalPrice = items.reduce((sum, item) => {
+      // Round to 2 decimal places to avoid floating point precision issues
+      return sum + Math.round(item.product.price * item.quantity * 100) / 100;
+    }, 0);
+    // Ensure final total is also properly rounded
+    return { totalItems, totalPrice: Math.round(totalPrice * 100) / 100 };
   };
 
   const addToCart = (
