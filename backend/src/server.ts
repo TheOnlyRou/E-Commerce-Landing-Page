@@ -7,6 +7,7 @@ import dotenv from 'dotenv';
 import { connectDatabase } from './utils/database';
 import { seedProducts, seedAdminUser } from './utils/seedData';
 import { errorHandler, notFoundHandler } from './middleware/errorHandler';
+import { validateEnv } from './utils/validateEnv';
 
 // Import routes
 import authRoutes from './routes/authRoutes';
@@ -15,6 +16,9 @@ import newsletterRoutes from './routes/newsletterRoutes';
 
 // Load environment variables
 dotenv.config();
+
+// Validate environment variables
+validateEnv();
 
 const app: Application = express();
 const PORT = process.env.PORT || 5000;
