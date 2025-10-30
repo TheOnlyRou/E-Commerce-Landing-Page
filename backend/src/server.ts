@@ -31,7 +31,7 @@ app.use(express.json()); // Parse JSON bodies
 app.use(express.urlencoded({ extended: true })); // Parse URL-encoded bodies
 
 // Health check endpoint
-app.get('/health', (req, res) => {
+app.get('/health', (_req, res) => {
   res.status(200).json({
     success: true,
     message: 'NovaThreads API is running',
@@ -89,4 +89,3 @@ process.on('uncaughtException', (error: Error) => {
 startServer();
 
 export default app;
-

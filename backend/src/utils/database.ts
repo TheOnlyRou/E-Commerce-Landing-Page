@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 export const connectDatabase = async (): Promise<void> => {
   try {
-    const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/novathreads';
+    const mongoUri = 'mongodb+srv://admin:Q5JbesVleOld9Eqc@cluster0.lq8pf.mongodb.net/novaThreads?retryWrites=true&w=majority';
     
     await mongoose.connect(mongoUri);
     
@@ -30,4 +30,3 @@ export const disconnectDatabase = async (): Promise<void> => {
     console.error('❌ Error disconnecting from MongoDB:', error);
   }
 };
-

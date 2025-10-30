@@ -43,13 +43,12 @@ export const register = async (req: Request, res: Response): Promise<void> => {
 
     // Generate JWT token
     const token = generateToken({
-      userId: user._id.toString(),
+      userId: String(user._id),
       email: user.email,
       role: user.role,
     });
 
     res.status(201).json({
-      success: true,
       message: 'User registered successfully',
       data: {
         token,
@@ -111,7 +110,7 @@ export const login = async (req: Request, res: Response): Promise<void> => {
 
     // Generate JWT token
     const token = generateToken({
-      userId: user._id.toString(),
+      userId:String(user._id),
       email: user.email,
       role: user.role,
     });
